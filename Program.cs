@@ -7,7 +7,7 @@ using System.Threading.Tasks;
  
 namespace Proyecto1
 {
-	class Ejercicio_1_Libro_Consola
+	class Proyecto1
 	{
 		static void Main(string[] args)
 		{
@@ -100,7 +100,11 @@ namespace Proyecto1
                     }
                 } while (opcion != 7);
 
+                void realizarPago()
+                {
+                    Console.WriteLine("Este metodo es para realizar pagos");
 
+                }
 
 
 
