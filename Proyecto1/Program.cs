@@ -115,6 +115,10 @@ namespace Proyecto1
                         Console.Clear();
                         Console.WriteLine("Ingrese el tipo de servicio:   [1-Electricidad  2-Telefono   3-Agua]"); tipoServicio[i] = int.Parse(Console.ReadLine());
                         Console.Clear();
+                        Console.WriteLine("Ingrese el monto a pagar:"); montoPagar[i] = int.Parse(Console.ReadLine());
+                        Console.Clear();
+                        Console.WriteLine("Ingrese el monto que pagara:"); montoCliente[i] = int.Parse(Console.ReadLine());
+                        Console.Clear();
 
 
                     }
@@ -144,14 +148,14 @@ namespace Proyecto1
 
                         Console.WriteLine($"Fecha:              {fecha.ToShortDateString()}                                      Hora:           {hora.ToShortTimeString()}");
                         Console.WriteLine("                                                                                                                                ");
-                        Console.WriteLine($"Cedula:             {cedula[i]}                                Nombre:         {nombre[i]}");
-                        Console.WriteLine($"Apellido:           {apellido1[i]}                                 Apellido 2:     {apellido2[i]}");
+                        Console.WriteLine($"Cedula:             {cedula[i]}                                            Nombre:         {nombre[i]}");
+                        Console.WriteLine($"Apellido:           {apellido1[i]}                                            Apellido 2:     {apellido2[i]}");
                         Console.WriteLine(" ");
                         Console.WriteLine($"Tipo de Servicio    {tipoServicio[i]}                        [1-Electricidad  2-Telefono   3-Agua]");
                         Console.WriteLine(" ");
-                        Console.WriteLine("Numero de Factura       12345                                    Monto a Pagar          12500");
-                        Console.WriteLine("Comision autorizada     498.3                                    Paga con               13000");
-                        Console.WriteLine("Monto deducible       11851.2                                    Vuelto                   500");
+                        Console.WriteLine($"Numero de Factura       12345                                      Monto a Pagar          {montoPagar[i]}");
+                        Console.WriteLine($"Comision autorizada     498.3                                      Paga con                 {montoCliente[i]}");
+                        Console.WriteLine($"Monto deducible       11851.2                                      Vuelto                   {montoCliente[i] - montoPagar[i]}");
                         Console.WriteLine(" ");
                         Console.WriteLine("                           Desea Continuar S/N?");
                         Console.WriteLine(" ");
