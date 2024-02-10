@@ -100,32 +100,42 @@ namespace Proyecto1
 
                 void ingresoDatos()
                 {
-
-                    for (int i = 0; i < 1; i++)
+                    char continuar = 's';
+           
+                    while (continuar == 's' || continuar == 'S')
                     {
-                        Console.WriteLine("Ingrese la cedula: "); cedula[i] = int.Parse(Console.ReadLine());
-                        Console.Clear();
-                        Console.WriteLine("Ingrese el nombre: "); nombre[i] = Console.ReadLine();
-                        Console.Clear();
-                        Console.WriteLine("Ingrese el primer apellido: "); apellido1[i] = Console.ReadLine();
-                        Console.Clear();
-                        Console.WriteLine("Ingrese el segundo apellido: "); apellido2[i] = Console.ReadLine();
-                        Console.Clear();
-                        Console.WriteLine("Ingrese el numero de factura: "); numeroFactura[i] = int.Parse(Console.ReadLine());
-                        Console.Clear();
-                        Console.WriteLine("Ingrese el tipo de servicio:   [1-Electricidad  2-Telefono   3-Agua]"); tipoServicio[i] = int.Parse(Console.ReadLine());
-                        Console.Clear();
-                        Console.WriteLine("Ingrese el monto a pagar:"); montoPagar[i] = int.Parse(Console.ReadLine());
-                        Console.Clear();
-                        Console.WriteLine("Ingrese el monto que pagara:"); montoCliente[i] = int.Parse(Console.ReadLine());
+                        for (int i = 0; i < 1; i++)
+                        {
+                            Console.WriteLine("Ingrese la cedula: "); cedula[i] = int.Parse(Console.ReadLine());
+                            Console.Clear();
+                            Console.WriteLine("Ingrese el nombre: "); nombre[i] = Console.ReadLine();
+                            Console.Clear();
+                            Console.WriteLine("Ingrese el primer apellido: "); apellido1[i] = Console.ReadLine();
+                            Console.Clear();
+                            Console.WriteLine("Ingrese el segundo apellido: "); apellido2[i] = Console.ReadLine();
+                            Console.Clear();
+                            Console.WriteLine("Ingrese el numero de factura: "); numeroFactura[i] = int.Parse(Console.ReadLine());
+                            Console.Clear();
+                            Console.WriteLine("Ingrese el tipo de servicio:   [1-Electricidad  2-Telefono   3-Agua]"); tipoServicio[i] = int.Parse(Console.ReadLine());
+                            Console.Clear();
+                            Console.WriteLine("Ingrese el monto a pagar:"); montoPagar[i] = int.Parse(Console.ReadLine());
+                            Console.Clear();
+                            Console.WriteLine("Ingrese el monto que pagara:"); montoCliente[i] = int.Parse(Console.ReadLine());
+                            Console.Clear();
+
+                            Console.WriteLine("\n¿Desea calcular el salario de otro empleado? (s/n):");
+                            continuar = Console.ReadKey().KeyChar;
+                            Console.WriteLine("\n");
+                        }
+
+                        Console.ReadKey();
                         Console.Clear();
 
 
+                        
                     }
 
-                    Console.ReadKey();
-                    Console.Clear();
-
+                    
                 }
 
                 void generarNumeroPago()
@@ -168,6 +178,19 @@ namespace Proyecto1
                 {
                     generarNumeroPago();
                     Console.WriteLine("Ingrese el tipo de Pago que desea hacer");
+
+                }
+
+                void elejitTipoServicio()
+                {
+                    
+                    for (int i = 0; i<tamano; i++)
+                    {
+                      
+
+
+                    } 
+
 
                 }
 
