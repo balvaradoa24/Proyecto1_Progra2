@@ -12,8 +12,7 @@ namespace Proyecto1
         static void Main(string[] args)
         {
 
-            int tamano = 1;
-            int[] edad = new int[tamano];
+            int tamano = 2;
             int[] cedula = new int[tamano];
             int[] numeroPago = new int[tamano];
             int[] numeroCaja = new int[tamano];
@@ -75,7 +74,7 @@ namespace Proyecto1
                             realizarPago();
                             break;
                         case 3:
-                            consultarPagos();
+                            consultarPagos(cedula, numeroPago, tipoServicio, nombre, apellido1, apellido2, montoPagar, montoComision, montoPagaCliente, montoDeducido, vuelto);
                             break;
                         case 4:
                             //ModificarPagos();
@@ -106,8 +105,9 @@ namespace Proyecto1
 
                 while (continuar == 's' || continuar == 'S')
                 {
-                    for (int i = 0; i < 1; i++)
+                    for (int i = 0; i < 2; i++)
                     {
+                        ;
                         Console.WriteLine("Ingrese la cedula: "); cedula[i] = int.Parse(Console.ReadLine());
                         Console.Clear();
                         Console.WriteLine("Ingrese el nombre: "); nombre[i] = Console.ReadLine();
@@ -172,9 +172,8 @@ namespace Proyecto1
 
                 for (int i = 0; i < numeroPago.Length; i++)
                 {
-                    string input = Console.ReadLine();
                     Console.WriteLine($"Numero de pago: {randomNumber}");
-
+                    numeroPago[i] = randomNumber;
                     Console.WriteLine($"Fecha:              {fecha.ToShortDateString()}                                      Hora:           {hora.ToShortTimeString()}");
                     Console.WriteLine("                                                                                                                                ");
                     Console.WriteLine($"Cedula:             {cedula[i]}                                          Nombre:         {nombre[i]}");
@@ -185,8 +184,7 @@ namespace Proyecto1
                     Console.WriteLine($"Numero de Factura       12345                                      Monto a Pagar          {montoPagar[i]}");
                     Console.WriteLine($"Comision autorizada    {montoComision[i]}                                   Paga con                 {montoPagaCliente[i]}");
                     Console.WriteLine($"Monto deducible       {montoDeducido[i]}                                    Vuelto                   {montoPagaCliente[i] - montoPagar[i]}");
-                    int.TryParse(input, out int numero);
-                    numeroPago[i] = numero;
+
 
                     Console.WriteLine(" ");
                     Console.WriteLine("                           Desea Continuar S/N?");
@@ -200,7 +198,7 @@ namespace Proyecto1
                 Console.WriteLine("Ingrese el tipo de Pago que desea hacer");
             }
 
-            void consultarPagos()
+            void consultarPagos(int[] cedula, int[] numeroPago, int[] tipoServicio, String[] nombre, String[] apellido1, String[] apellido2, double[] montoPagar, double[] montoComision, double[] montoPagaCliente, double[] montoDeducido, double[] vuelto)
             {
                 bool encontrado = false; ;
                 Console.WriteLine("Numero de pago: ");
@@ -209,6 +207,7 @@ namespace Proyecto1
 
                 for (int i = 0; i < numeroPago.Length; i++)
                 {
+                    Console.WriteLine($"Numero de pago: {numeroPago[i]}");
                     if (numbPago.Equals(numeroPago[i]))
                     {
                         Console.WriteLine(" ");
@@ -216,7 +215,15 @@ namespace Proyecto1
                         Console.WriteLine("                  Tienda la Favorita  -  Consultar Datos");
                         Console.WriteLine("      ");
                         Console.WriteLine($"Numero de pago: {numeroPago[i]}");
-
+                        Console.WriteLine("                                                                                                                                ");
+                        Console.WriteLine($"Cedula:             {cedula[i]}                                          Nombre:         {nombre[i]}");
+                        Console.WriteLine($"Apellido:           {apellido1[i]}                                           Apellido 2:     {apellido2[i]}");
+                        Console.WriteLine(" ");
+                        Console.WriteLine($"Tipo de Servicio    {tipoServicio[i]}                        [1-Electricidad  2-Telefono   3-Agua]");
+                        Console.WriteLine(" ");
+                        Console.WriteLine($"Numero de Factura       12345                                      Monto a Pagar          {montoPagar[i]}");
+                        Console.WriteLine($"Comision autorizada    {montoComision[i]}                          Paga con                 {montoPagaCliente[i]}");
+                        Console.WriteLine($"Monto deducible       {montoDeducido[i]}                           Vuelto                   {montoPagaCliente[i] - montoPagar[i]}");
                         encontrado = true;
                         break;
                     }
