@@ -11,6 +11,7 @@ namespace Proyecto1
     {
         static void Main(string[] args)
         {
+
             int tamano = 10;
             int[] edad = new int[tamano];
             int[] cedula = new int[tamano];
@@ -21,33 +22,29 @@ namespace Proyecto1
             String[] nombre = new String[tamano];
             String[] apellido1 = new String[tamano];
             String[] apellido2 = new String[tamano];
+            string[] nombreServicio = new string[tamano];
             DateTime fecha = DateTime.Now;
             DateTime hora = DateTime.Now;
             double[] numeroFactura = new double[tamano];
             double[] montoPagar = new double[tamano];
+            double[] montoPagaCliente = new double[tamano];
             double[] montoComision = new double[tamano];
             double[] montoDeducido = new double[tamano];
-            double[] montoCliente = new double[tamano];
             double[] vuelto = new double[tamano];
 
-
             menu();
-
             void inicializar()
             {
+
                 cedula = Enumerable.Repeat(0, tamano).ToArray<int>();
                 nombre = Enumerable.Repeat("", tamano).ToArray<string>();
                 apellido1 = Enumerable.Repeat("", tamano).ToArray<string>();
                 apellido2 = Enumerable.Repeat("", tamano).ToArray<string>();
-                edad = Enumerable.Repeat(0, tamano).ToArray<int>();
                 numeroPago = Enumerable.Repeat(0, tamano).ToArray<int>();
                 numeroCaja = Enumerable.Repeat(0, tamano).ToArray<int>();
                 tipoServicio = Enumerable.Repeat(0, tamano).ToArray<int>();
                 numeroFactura = Enumerable.Repeat(0.5, tamano).ToArray<double>();
                 montoPagar = Enumerable.Repeat(0.5, tamano).ToArray<double>();
-                montoComision = Enumerable.Repeat(0.5, tamano).ToArray<double>();
-                montoDeducido = Enumerable.Repeat(0.5, tamano).ToArray<double>();
-                montoCliente = Enumerable.Repeat(0.5, tamano).ToArray<double>();
                 vuelto = Enumerable.Repeat(0.5, tamano).ToArray<double>();
                 Console.WriteLine("Los arreglos han sido inicializados...");
                 Console.ReadKey();
@@ -99,9 +96,15 @@ namespace Proyecto1
                 } while (opcion != 7);
 
                 void ingresoDatos()
+
                 {
+
+                    double electricidad = 0.04;
+                    double agua = 0.065;
+                    double telefono = 0.055;
+
                     char continuar = 's';
-           
+
                     while (continuar == 's' || continuar == 'S')
                     {
                         for (int i = 0; i < 1; i++)
@@ -120,22 +123,59 @@ namespace Proyecto1
                             Console.Clear();
                             Console.WriteLine("Ingrese el monto a pagar:"); montoPagar[i] = int.Parse(Console.ReadLine());
                             Console.Clear();
-                            Console.WriteLine("Ingrese el monto que pagara:"); montoCliente[i] = int.Parse(Console.ReadLine());
-                            Console.Clear();
+                            Console.WriteLine("Ingrese el monto entregado:");
+                            montoPagaCliente[i] = Convert.ToDouble(Console.ReadLine());
 
-                            Console.WriteLine("\n¿Desea calcular el salario de otro empleado? (s/n):");
+
+
+
+
+
+
+                            switch (tipoServicio[i])
+                            {
+                                case 1:
+                                    montoComision[i] = agua;
+                                    //  nombreServicio = "Agua";
+                                    break;
+                                case 2:
+                                    montoComision[i] = electricidad;
+                                    // nombreServicio = "Electricidad";
+                                    break;
+                                case 3:
+                                    montoComision[i] = telefono;
+                                    // nombreServicio = "Teléfono";
+                                    break;
+                                default:
+                                    Console.WriteLine("Opción no válida.");
+                                    return;
+                            }
+
+
+                            montoPagar[i] = (montoPagar[i] * montoComision[i]) + montoPagar[i];
+                            
+                            montoDeducido[i] = montoPagar[i] - montoComision[i];
+                            
+                            vuelto[i] = montoPagaCliente[i] - montoPagar[i];
+
+
+
+
+
+                            Console.WriteLine("\n¿Desea Continuar S/N?");
                             continuar = Console.ReadKey().KeyChar;
                             Console.WriteLine("\n");
                         }
+
 
                         Console.ReadKey();
                         Console.Clear();
 
 
-                        
+
                     }
 
-                    
+
                 }
 
                 void generarNumeroPago()
@@ -164,8 +204,8 @@ namespace Proyecto1
                         Console.WriteLine($"Tipo de Servicio    {tipoServicio[i]}                        [1-Electricidad  2-Telefono   3-Agua]");
                         Console.WriteLine(" ");
                         Console.WriteLine($"Numero de Factura       12345                                      Monto a Pagar          {montoPagar[i]}");
-                        Console.WriteLine($"Comision autorizada     498.3                                      Paga con                 {montoCliente[i]}");
-                        Console.WriteLine($"Monto deducible       11851.2                                      Vuelto                   {montoCliente[i] - montoPagar[i]}");
+                        Console.WriteLine($"Comision autorizada    {montoComision[i]}                                    Paga con                 {montoPagaCliente[i]}");
+                        Console.WriteLine($"Monto deducible       {montoDeducido[i]}                                     Vuelto                   {montoPagaCliente[i] - montoPagar[i]}");
                         Console.WriteLine(" ");
                         Console.WriteLine("                           Desea Continuar S/N?");
                         Console.WriteLine(" ");
@@ -178,18 +218,17 @@ namespace Proyecto1
                 {
                     generarNumeroPago();
                     Console.WriteLine("Ingrese el tipo de Pago que desea hacer");
-
                 }
 
                 void elejitTipoServicio()
                 {
-                    
-                    for (int i = 0; i<tamano; i++)
+
+                    for (int i = 0; i < tamano; i++)
                     {
-                      
 
 
-                    } 
+
+                    }
 
 
                 }
