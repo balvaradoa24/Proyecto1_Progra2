@@ -100,8 +100,8 @@ namespace Proyecto1
                 {
 
                     double electricidad = 0.04;
-                    double agua = 0.065;
                     double telefono = 0.055;
+                    double agua = 0.065;
 
                     char continuar = 's';
 
@@ -126,56 +126,35 @@ namespace Proyecto1
                             Console.WriteLine("Ingrese el monto entregado:");
                             montoPagaCliente[i] = Convert.ToDouble(Console.ReadLine());
 
-
-
-
-
-
-
                             switch (tipoServicio[i])
                             {
                                 case 1:
-                                    montoComision[i] = agua;
-                                    //  nombreServicio = "Agua";
+                                    montoComision[i] = electricidad;
                                     break;
                                 case 2:
-                                    montoComision[i] = electricidad;
-                                    // nombreServicio = "Electricidad";
+                                    montoComision[i] = telefono;
                                     break;
                                 case 3:
-                                    montoComision[i] = telefono;
-                                    // nombreServicio = "Teléfono";
+                                    montoComision[i] = agua;
                                     break;
                                 default:
                                     Console.WriteLine("Opción no válida.");
                                     return;
                             }
 
-
                             montoPagar[i] = (montoPagar[i] * montoComision[i]) + montoPagar[i];
-                            
+
                             montoDeducido[i] = montoPagar[i] - montoComision[i];
-                            
+
                             vuelto[i] = montoPagaCliente[i] - montoPagar[i];
-
-
-
-
 
                             Console.WriteLine("\n¿Desea Continuar S/N?");
                             continuar = Console.ReadKey().KeyChar;
                             Console.WriteLine("\n");
                         }
-
-
                         Console.ReadKey();
                         Console.Clear();
-
-
-
                     }
-
-
                 }
 
                 void generarNumeroPago()
@@ -198,14 +177,14 @@ namespace Proyecto1
 
                         Console.WriteLine($"Fecha:              {fecha.ToShortDateString()}                                      Hora:           {hora.ToShortTimeString()}");
                         Console.WriteLine("                                                                                                                                ");
-                        Console.WriteLine($"Cedula:             {cedula[i]}                                            Nombre:         {nombre[i]}");
-                        Console.WriteLine($"Apellido:           {apellido1[i]}                                            Apellido 2:     {apellido2[i]}");
+                        Console.WriteLine($"Cedula:             {cedula[i]}                                          Nombre:         {nombre[i]}");
+                        Console.WriteLine($"Apellido:           {apellido1[i]}                                          Apellido 2:     {apellido2[i]}");
                         Console.WriteLine(" ");
                         Console.WriteLine($"Tipo de Servicio    {tipoServicio[i]}                        [1-Electricidad  2-Telefono   3-Agua]");
                         Console.WriteLine(" ");
                         Console.WriteLine($"Numero de Factura       12345                                      Monto a Pagar          {montoPagar[i]}");
-                        Console.WriteLine($"Comision autorizada    {montoComision[i]}                                    Paga con                 {montoPagaCliente[i]}");
-                        Console.WriteLine($"Monto deducible       {montoDeducido[i]}                                     Vuelto                   {montoPagaCliente[i] - montoPagar[i]}");
+                        Console.WriteLine($"Comision autorizada    {montoComision[i]}                                   Paga con                 {montoPagaCliente[i]}");
+                        Console.WriteLine($"Monto deducible       {montoDeducido[i]}                                    Vuelto                   {montoPagaCliente[i] - montoPagar[i]}");
                         Console.WriteLine(" ");
                         Console.WriteLine("                           Desea Continuar S/N?");
                         Console.WriteLine(" ");
@@ -219,23 +198,6 @@ namespace Proyecto1
                     generarNumeroPago();
                     Console.WriteLine("Ingrese el tipo de Pago que desea hacer");
                 }
-
-                void elejitTipoServicio()
-                {
-
-                    for (int i = 0; i < tamano; i++)
-                    {
-
-
-
-                    }
-
-
-                }
-
-
-
-
 
             }
 
