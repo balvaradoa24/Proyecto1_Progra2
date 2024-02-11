@@ -12,8 +12,7 @@ namespace Proyecto1
         static void Main(string[] args)
         {
 
-            int tamano = 10;
-            int[] edad = new int[tamano];
+            int tamano = 2;
             int[] cedula = new int[tamano];
             int[] numeroPago = new int[tamano];
             int[] numeroCaja = new int[tamano];
@@ -75,7 +74,7 @@ namespace Proyecto1
                             realizarPago();
                             break;
                         case 3:
-                            //ConsultarPagos();
+                            consultarPagos(cedula, numeroPago, tipoServicio, nombre, apellido1, apellido2, montoPagar, montoComision, montoPagaCliente, montoDeducido, vuelto);
                             break;
                         case 4:
                             //ModificarPagos();
@@ -94,112 +93,158 @@ namespace Proyecto1
                             break;
                     }
                 } while (opcion != 7);
+            }
 
-                void ingresoDatos()
+            void ingresoDatos()
+            {
+                double electricidad = 0.04;
+                double telefono = 0.055;
+                double agua = 0.065;
 
+                char continuar = 's';
+
+                while (continuar == 's' || continuar == 'S')
                 {
-
-                    double electricidad = 0.04;
-                    double telefono = 0.055;
-                    double agua = 0.065;
-
-                    char continuar = 's';
-
-                    while (continuar == 's' || continuar == 'S')
+                    for (int i = 0; i < 2; i++)
                     {
-                        for (int i = 0; i < 1; i++)
-                        {
-                            Console.WriteLine("Ingrese la cedula: "); cedula[i] = int.Parse(Console.ReadLine());
-                            Console.Clear();
-                            Console.WriteLine("Ingrese el nombre: "); nombre[i] = Console.ReadLine();
-                            Console.Clear();
-                            Console.WriteLine("Ingrese el primer apellido: "); apellido1[i] = Console.ReadLine();
-                            Console.Clear();
-                            Console.WriteLine("Ingrese el segundo apellido: "); apellido2[i] = Console.ReadLine();
-                            Console.Clear();
-                            Console.WriteLine("Ingrese el numero de factura: "); numeroFactura[i] = int.Parse(Console.ReadLine());
-                            Console.Clear();
-                            Console.WriteLine("Ingrese el tipo de servicio:   [1-Electricidad  2-Telefono   3-Agua]"); tipoServicio[i] = int.Parse(Console.ReadLine());
-                            Console.Clear();
-                            Console.WriteLine("Ingrese el monto a pagar:"); montoPagar[i] = int.Parse(Console.ReadLine());
-                            Console.Clear();
-                            Console.WriteLine("Ingrese el monto entregado:");
-                            montoPagaCliente[i] = Convert.ToDouble(Console.ReadLine());
-
-                            switch (tipoServicio[i])
-                            {
-                                case 1:
-                                    montoComision[i] = electricidad;
-                                    break;
-                                case 2:
-                                    montoComision[i] = telefono;
-                                    break;
-                                case 3:
-                                    montoComision[i] = agua;
-                                    break;
-                                default:
-                                    Console.WriteLine("Opción no válida.");
-                                    return;
-                            }
-
-                            montoPagar[i] = (montoPagar[i] * montoComision[i]) + montoPagar[i];
-
-                            montoDeducido[i] = montoPagar[i] - montoComision[i];
-
-                            vuelto[i] = montoPagaCliente[i] - montoPagar[i];
-
-                            Console.WriteLine("\n¿Desea Continuar S/N?");
-                            continuar = Console.ReadKey().KeyChar;
-                            Console.WriteLine("\n");
-                        }
-                        Console.ReadKey();
+                        ;
+                        Console.WriteLine("Ingrese la cedula: "); cedula[i] = int.Parse(Console.ReadLine());
                         Console.Clear();
+                        Console.WriteLine("Ingrese el nombre: "); nombre[i] = Console.ReadLine();
+                        Console.Clear();
+                        Console.WriteLine("Ingrese el primer apellido: "); apellido1[i] = Console.ReadLine();
+                        Console.Clear();
+                        Console.WriteLine("Ingrese el segundo apellido: "); apellido2[i] = Console.ReadLine();
+                        Console.Clear();
+                        Console.WriteLine("Ingrese el numero de factura: "); numeroFactura[i] = int.Parse(Console.ReadLine());
+                        Console.Clear();
+                        Console.WriteLine("Ingrese el tipo de servicio:   [1-Electricidad  2-Telefono   3-Agua]"); tipoServicio[i] = int.Parse(Console.ReadLine());
+                        Console.Clear();
+                        Console.WriteLine("Ingrese el monto a pagar:"); montoPagar[i] = int.Parse(Console.ReadLine());
+                        Console.Clear();
+                        Console.WriteLine("Ingrese el monto entregado:");
+                        montoPagaCliente[i] = Convert.ToDouble(Console.ReadLine());
+
+                        switch (tipoServicio[i])
+                        {
+                            case 1:
+                                montoComision[i] = electricidad;
+                                break;
+                            case 2:
+                                montoComision[i] = telefono;
+                                break;
+                            case 3:
+                                montoComision[i] = agua;
+                                break;
+                            default:
+                                Console.WriteLine("Opción no válida.");
+                                return;
+                        }
+
+                        montoPagar[i] = (montoPagar[i] * montoComision[i]) + montoPagar[i];
+
+                        montoDeducido[i] = montoPagar[i] - montoComision[i];
+
+                        vuelto[i] = montoPagaCliente[i] - montoPagar[i];
+
+                        Console.WriteLine("\n¿Desea Continuar S/N?");
+                        continuar = Console.ReadKey().KeyChar;
+                        Console.WriteLine("\n");
                     }
+                    Console.ReadKey();
+                    Console.Clear();
                 }
+            }
 
-                void generarNumeroPago()
+            void generarNumeroPago()
+            {
+
+                ingresoDatos();
+
+                Console.WriteLine(" ");
+                Console.WriteLine("                  Sistema de Pago de Servicios Publicos");
+                Console.WriteLine("                  Tienda la Favorita  -  Ingreso de Datos");
+                Console.WriteLine("                                     ");
+
+                Random aleatorio = new Random();
+                var randomNumber = aleatorio.Next(0, 10);
+
+
+                for (int i = 0; i < numeroPago.Length; i++)
                 {
+                    Console.WriteLine($"Numero de pago: {randomNumber}");
+                    numeroPago[i] = randomNumber;
+                    Console.WriteLine($"Fecha:              {fecha.ToShortDateString()}                                      Hora:           {hora.ToShortTimeString()}");
+                    Console.WriteLine("                                                                                                                                ");
+                    Console.WriteLine($"Cedula:             {cedula[i]}                                          Nombre:         {nombre[i]}");
+                    Console.WriteLine($"Apellido:           {apellido1[i]}                                          Apellido 2:     {apellido2[i]}");
+                    Console.WriteLine(" ");
+                    Console.WriteLine($"Tipo de Servicio    {tipoServicio[i]}                        [1-Electricidad  2-Telefono   3-Agua]");
+                    Console.WriteLine(" ");
+                    Console.WriteLine($"Numero de Factura       12345                                      Monto a Pagar          {montoPagar[i]}");
+                    Console.WriteLine($"Comision autorizada    {montoComision[i]}                                   Paga con                 {montoPagaCliente[i]}");
+                    Console.WriteLine($"Monto deducible       {montoDeducido[i]}                                    Vuelto                   {montoPagaCliente[i] - montoPagar[i]}");
 
-                    ingresoDatos();
 
                     Console.WriteLine(" ");
-                    Console.WriteLine("                  Sistema de Pago de Servicios Publicos");
-                    Console.WriteLine("                  Tienda la Favorita  -  Ingreso de Datos");
-                    Console.WriteLine("                                     ");
+                    Console.WriteLine("                           Desea Continuar S/N?");
+                    Console.WriteLine(" ");
+                }
+            }
 
-                    Random aleatorio = new Random();
-                    var randomNumber = aleatorio.Next(0, 10);
+            void realizarPago()
+            {
+                generarNumeroPago();
+                Console.WriteLine("Ingrese el tipo de Pago que desea hacer");
+            }
 
+            void consultarPagos(int[] cedula, int[] numeroPago, int[] tipoServicio, String[] nombre, String[] apellido1, String[] apellido2, double[] montoPagar, double[] montoComision, double[] montoPagaCliente, double[] montoDeducido, double[] vuelto)
+            {
+                bool encontrado = false; ;
+                Console.WriteLine("Numero de pago: ");
+                int numbPago = int.Parse(Console.ReadLine());
+                Console.WriteLine("\n");
 
-                    for (int i = 0; i < 1; i++)
+                for (int i = 0; i < numeroPago.Length; i++)
+                {
+                    Console.WriteLine($"Numero de pago: {numeroPago[i]}");
+                    if (numbPago.Equals(numeroPago[i]))
                     {
-                        Console.WriteLine($"Numero de pago: {randomNumber}");
-
-                        Console.WriteLine($"Fecha:              {fecha.ToShortDateString()}                                      Hora:           {hora.ToShortTimeString()}");
+                        Console.WriteLine(" ");
+                        Console.WriteLine("                  Sistema de Pago de Servicios Publicos");
+                        Console.WriteLine("                  Tienda la Favorita  -  Consultar Datos");
+                        Console.WriteLine("      ");
+                        Console.WriteLine($"Numero de pago: {numeroPago[i]}");
                         Console.WriteLine("                                                                                                                                ");
                         Console.WriteLine($"Cedula:             {cedula[i]}                                          Nombre:         {nombre[i]}");
-                        Console.WriteLine($"Apellido:           {apellido1[i]}                                          Apellido 2:     {apellido2[i]}");
+                        Console.WriteLine($"Apellido:           {apellido1[i]}                                           Apellido 2:     {apellido2[i]}");
                         Console.WriteLine(" ");
                         Console.WriteLine($"Tipo de Servicio    {tipoServicio[i]}                        [1-Electricidad  2-Telefono   3-Agua]");
                         Console.WriteLine(" ");
                         Console.WriteLine($"Numero de Factura       12345                                      Monto a Pagar          {montoPagar[i]}");
-                        Console.WriteLine($"Comision autorizada    {montoComision[i]}                                   Paga con                 {montoPagaCliente[i]}");
-                        Console.WriteLine($"Monto deducible       {montoDeducido[i]}                                    Vuelto                   {montoPagaCliente[i] - montoPagar[i]}");
-                        Console.WriteLine(" ");
-                        Console.WriteLine("                           Desea Continuar S/N?");
-                        Console.WriteLine(" ");
+                        Console.WriteLine($"Comision autorizada    {montoComision[i]}                          Paga con                 {montoPagaCliente[i]}");
+                        Console.WriteLine($"Monto deducible       {montoDeducido[i]}                           Vuelto                   {montoPagaCliente[i] - montoPagar[i]}");
+                        encontrado = true;
+                        break;
                     }
 
+                    if (encontrado == false)
+                    {
+                        Console.WriteLine(" ");
+                        Console.WriteLine("                  Sistema de Pago de Servicios Publicos");
+                        Console.WriteLine("                  Tienda la Favorita  -  Consultar Datos");
+                        Console.WriteLine("      ");
+                        Console.WriteLine($"Numero de pago: {numbPago}");
+                        Console.WriteLine("                 Pago no se encuentra Registrado");
 
+                        Console.WriteLine("                 Presione cualquier Tecla para ver Registro");
+                        Console.ReadKey();
+                        Console.WriteLine("\n");
+
+                    }
                 }
-
-                void realizarPago()
-                {
-                    generarNumeroPago();
-                    Console.WriteLine("Ingrese el tipo de Pago que desea hacer");
-                }
-
             }
+
 
         }
     }
