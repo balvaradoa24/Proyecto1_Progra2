@@ -34,7 +34,6 @@ namespace Proyecto1
             menu();
             void inicializar()
             {
-
                 cedula = Enumerable.Repeat(0, tamano).ToArray<int>();
                 nombre = Enumerable.Repeat("", tamano).ToArray<string>();
                 apellido1 = Enumerable.Repeat("", tamano).ToArray<string>();
@@ -80,10 +79,10 @@ namespace Proyecto1
                             modificarPagos(cedula, numeroPago, tipoServicio, nombre, apellido1, apellido2, montoPagar, montoComision, montoPagaCliente, montoDeducido, vuelto);
                             break;
                         case 5:
-                            //EliminarPagos();
+                            eliminarPagos(numeroPago);
                             break;
                         case 6:
-                            // SubmenuReportes();
+                            // submenuReportes();
                             break;
                         case 7:
                             Console.WriteLine("Saliendo...");
@@ -382,6 +381,45 @@ namespace Proyecto1
                         Console.ReadKey();
                         Console.WriteLine("\n");
 
+                    }
+                }
+            }
+
+            void eliminarPagos(int[] numeroPago)
+            {
+                bool encontrado = false;
+                char continuar = 's';
+                Console.WriteLine("Ingrese el nùmero de pago a eliminar: ");
+                int numbPago = int.Parse(Console.ReadLine());
+                int indiceEliminar = Array.IndexOf(numeroPago, numbPago);
+
+
+                for (int i = 0; i < numeroPago.Length; i++)
+                {
+                    if (numbPago.Equals(numeroPago[i]))
+                    {
+                        Console.WriteLine("\n¿Está seguro de eliminar el dato S/N?");
+                        continuar = Console.ReadKey().KeyChar;
+                        Console.WriteLine("\n");
+                        encontrado = true;
+                        if (indiceEliminar != -1)
+                        {
+                            int[] nuevoVector = new int[numeroPago.Length - 1];
+                            int j = 0;
+                            for (int e = 0; e < numeroPago.Length; e++)
+                            {
+                                if (e != indiceEliminar)
+                                {
+                                    nuevoVector[j++] = numeroPago[i];
+                                }
+                                Console.WriteLine("La informaciòn ya fue eliminada");
+                            }
+                        }
+                    }
+                    else
+                    {
+                        encontrado = false;
+                        Console.WriteLine("La informaciòn no fue eliminada");
                     }
                 }
             }
