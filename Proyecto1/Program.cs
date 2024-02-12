@@ -83,7 +83,7 @@ namespace Proyecto1
                             //EliminarPagos();
                             break;
                         case 6:
-                            // SubmenuReportes();
+                            SubmenuReportes();
                             break;
                         case 7:
                             Console.WriteLine("Saliendo...");
@@ -385,6 +385,104 @@ namespace Proyecto1
                     }
                 }
             }
+
+            void SubmenuReportes()
+            {
+                int opcionReporte = 0;
+
+                do
+                {
+                    Console.WriteLine("\nSubmenú de Reportes");
+                    Console.WriteLine("1. Ver todos los Pagos");
+                    Console.WriteLine("2. Ver Pagos por tipo de Servicio");
+                    Console.WriteLine("3. Ver Pagos por código de caja");
+                    Console.WriteLine("4. Ver Dinero Comisionado por servicios");
+                    Console.WriteLine("5. Regresar Menú Principal");
+                    Console.Write("Seleccione una opción: ");
+                    opcionReporte = Convert.ToInt32(Console.ReadLine());
+
+                    switch (opcionReporte)
+                    {
+                        case 1:
+                            // Lógica para mostrar reporte de todos los pagos realizados
+                            Console.WriteLine("Mostrando reporte de todos los pagos realizados:");
+                            for (int i = 0; i < tamano; i++)
+                            {
+                                Console.WriteLine($"Pago {i + 1}: Cedula: {cedula[i]}, Nombre: {nombre[i]}, Apellido: {apellido1[i]}, Tipo de Servicio: {nombreServicio[tipoServicio[i]]}, Monto a Pagar: {montoPagar[i]}");
+                            }
+                            break;
+                        case 2:
+                            // Lógica para mostrar reporte de pagos por tipo de servicio
+                            Console.WriteLine("Mostrando reporte de pagos por tipo de Servicio:");
+                            Console.WriteLine("Seleccione el tipo de servicio que desea ver en el reporte:");
+                            Console.WriteLine("1. Electricidad");
+                            Console.WriteLine("2. Teléfono");
+                            Console.WriteLine("3. Agua");
+                            int tipoSeleccionado = Convert.ToInt32(Console.ReadLine());
+
+                            Console.WriteLine($"Mostrando reporte de pagos para {nombreServicio[tipoSeleccionado - 1]}:");
+                            for (int i = 0; i < tamano; i++)
+                            {
+                                if (tipoServicio[i] == tipoSeleccionado)
+                                {
+                                    Console.WriteLine($"Pago {i + 1}: Cedula: {cedula[i]}, Nombre: {nombre[i]}, Apellido: {apellido1[i]}, Monto a Pagar: {montoPagar[i]}");
+                                }
+                            }
+                            break;
+                        case 3:
+                            // Lógica para mostrar reporte de pagos por código de caja
+                            Console.WriteLine("Mostrando reporte de pagos por código de caja:");
+                            Console.WriteLine("Seleccione el código de caja que desea ver en el reporte:");
+                            // Suponiendo que los códigos de caja van del 1 al 5
+                            int codigoSeleccionado = Convert.ToInt32(Console.ReadLine());
+
+                            Console.WriteLine($"Mostrando reporte de pagos para el código de caja {codigoSeleccionado}:");
+                            for (int i = 0; i < tamano; i++)
+                            {
+                                if (numeroCaja[i] == codigoSeleccionado)
+                                {
+                                    Console.WriteLine($"Pago {i + 1}: Cedula: {cedula[i]}, Nombre: {nombre[i]}, Apellido: {apellido1[i]}, Monto a Pagar: {montoPagar[i]}");
+                                }
+                            }
+                            break;
+                        case 4:
+                            // Lógica para mostrar reporte de dinero comisionado por servicios
+                            Console.WriteLine("Mostrando resumen del dinero comisionado por servicios:");
+                            double totalElectricidad = 0;
+                            double totalTelefono = 0;
+                            double totalAgua = 0;
+
+                            for (int i = 0; i < tamano; i++)
+                            {
+                                switch (tipoServicio[i])
+                                {
+                                    case 1:
+                                        totalElectricidad += montoComision[i];
+                                        break;
+                                    case 2:
+                                        totalTelefono += montoComision[i];
+                                        break;
+                                    case 3:
+                                        totalAgua += montoComision[i];
+                                        break;
+                                }
+                            }
+
+                            Console.WriteLine($"Total comisionado por Electricidad: {totalElectricidad}");
+                            Console.WriteLine($"Total comisionado por Teléfono: {totalTelefono}");
+                            Console.WriteLine($"Total comisionado por Agua: {totalAgua}");
+                            break;
+                        case 5:
+                            Console.WriteLine("Regresando al Menú Principal...");
+                            break;
+                        default:
+                            Console.WriteLine("Opción no válida.");
+                            break;
+                    }
+                } while (opcionReporte != 5);
+            }
+
+
         }
     }
 }
