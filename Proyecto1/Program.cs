@@ -1,4 +1,4 @@
-﻿
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -107,23 +107,66 @@ namespace Proyecto1
                 {
                     for (int i = 0; i < 2; i++)
                     {
-                        ;
-                        Console.WriteLine("Ingrese la cedula: "); cedula[i] = int.Parse(Console.ReadLine());
+                        Console.WriteLine("Ingrese la cedula: ");
+                        cedula[i] = int.Parse(Console.ReadLine());
                         Console.Clear();
-                        Console.WriteLine("Ingrese el nombre: "); nombre[i] = Console.ReadLine();
+                        Console.WriteLine("Ingrese el nombre: ");
+                        nombre[i] = Console.ReadLine();
                         Console.Clear();
-                        Console.WriteLine("Ingrese el primer apellido: "); apellido1[i] = Console.ReadLine();
+                        Console.WriteLine("Ingrese el primer apellido: ");
+                        apellido1[i] = Console.ReadLine();
                         Console.Clear();
-                        Console.WriteLine("Ingrese el segundo apellido: "); apellido2[i] = Console.ReadLine();
+                        Console.WriteLine("Ingrese el segundo apellido: ");
+                        apellido2[i] = Console.ReadLine();
                         Console.Clear();
-                        Console.WriteLine("Ingrese el numero de factura: "); numeroFactura[i] = int.Parse(Console.ReadLine());
+                        Console.WriteLine("Ingrese el numero de factura: ");
+                        int numFacturaInput = int.Parse(Console.ReadLine());
+                        if (Array.IndexOf(numeroFactura, numFacturaInput) != -1)
+                        {
+                            Console.WriteLine("El número de factura ya ha sido ingresado. Ingrese otro número de factura.");
+                            continue;
+                        }
+                        numeroFactura[i] = numFacturaInput;
                         Console.Clear();
-                        Console.WriteLine("Ingrese el tipo de servicio:   [1-Electricidad  2-Telefono   3-Agua]"); tipoServicio[i] = int.Parse(Console.ReadLine());
+
+
+                        do
+                        {
+
+                            Console.WriteLine("Ingrese el tipo de servicio:   [1-Electricidad  2-Telefono   3-Agua]");
+                            tipoServicio[i] = int.Parse(Console.ReadLine());
+                            // Validar si el número está dentro del rango
+                            if (tipoServicio[i] < 1 || tipoServicio[i] > 3)
+                            {
+                                Console.WriteLine("El número ingresado está fuera del rango. Por favor, ingrese un número entre 1 y 3.");
+                                Console.WriteLine("");
+
+                                Console.WriteLine("Ingrese el tipo de servicio:   [1-Electricidad  2-Telefono   3-Agua]");
+                                tipoServicio[i] = int.Parse(Console.ReadLine());
+                            }
+                        } while (tipoServicio[i] < 1 || tipoServicio[i] > 3);
+
+                        Console.WriteLine($"El tipo de servicio ingresado es: {tipoServicio[i]}");
+
+
+
+
+
+
                         Console.Clear();
-                        Console.WriteLine("Ingrese el monto a pagar:"); montoPagar[i] = int.Parse(Console.ReadLine());
+                        Console.WriteLine("Ingrese el monto a pagar:");
+                        if (!double.TryParse(Console.ReadLine(), out montoPagar[i]) || montoPagar[i] <= 0)
+                        {
+                            Console.WriteLine("Monto a pagar no válido. Ingrese un número válido mayor que cero.");
+                            continue;
+                        }
                         Console.Clear();
                         Console.WriteLine("Ingrese el monto entregado:");
-                        montoPagaCliente[i] = Convert.ToDouble(Console.ReadLine());
+                        if (!double.TryParse(Console.ReadLine(), out montoPagaCliente[i]) || montoPagaCliente[i] < montoPagar[i])
+                        {
+                            Console.WriteLine("Monto entregado no válido. Debe ser un número válido y mayor o igual al monto a pagar.");
+                            continue;
+                        }
 
                         switch (tipoServicio[i])
                         {
@@ -150,11 +193,13 @@ namespace Proyecto1
                         Console.WriteLine("\n¿Desea Continuar S/N?");
                         continuar = Console.ReadKey().KeyChar;
                         Console.WriteLine("\n");
+
+                        Console.ReadKey();
+                        Console.Clear();
                     }
-                    Console.ReadKey();
-                    Console.Clear();
                 }
             }
+
 
             void generarNumeroPago()
             {
@@ -244,11 +289,11 @@ namespace Proyecto1
                     }
                 }
             }
-
-
         }
     }
 }
+
+
 
 
 
