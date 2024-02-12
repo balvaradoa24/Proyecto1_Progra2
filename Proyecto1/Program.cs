@@ -77,7 +77,7 @@ namespace Proyecto1
                             consultarPagos(cedula, numeroPago, tipoServicio, nombre, apellido1, apellido2, montoPagar, montoComision, montoPagaCliente, montoDeducido, vuelto);
                             break;
                         case 4:
-                            //ModificarPagos();
+                            modificarPagos(cedula, numeroPago, tipoServicio, nombre, apellido1, apellido2, montoPagar, montoComision, montoPagaCliente, montoDeducido, vuelto);
                             break;
                         case 5:
                             //EliminarPagos();
@@ -147,11 +147,6 @@ namespace Proyecto1
                         } while (tipoServicio[i] < 1 || tipoServicio[i] > 3);
 
                         Console.WriteLine($"El tipo de servicio ingresado es: {tipoServicio[i]}");
-
-
-
-
-
 
                         Console.Clear();
                         Console.WriteLine("Ingrese el monto a pagar:");
@@ -245,7 +240,7 @@ namespace Proyecto1
 
             void consultarPagos(int[] cedula, int[] numeroPago, int[] tipoServicio, String[] nombre, String[] apellido1, String[] apellido2, double[] montoPagar, double[] montoComision, double[] montoPagaCliente, double[] montoDeducido, double[] vuelto)
             {
-                bool encontrado = false; ;
+                bool encontrado = false;
                 Console.WriteLine("Numero de pago: ");
                 int numbPago = int.Parse(Console.ReadLine());
                 Console.WriteLine("\n");
@@ -266,7 +261,7 @@ namespace Proyecto1
                         Console.WriteLine(" ");
                         Console.WriteLine($"Tipo de Servicio    {tipoServicio[i]}                        [1-Electricidad  2-Telefono   3-Agua]");
                         Console.WriteLine(" ");
-                        Console.WriteLine($"Numero de Factura       12345                                      Monto a Pagar          {montoPagar[i]}");
+                        Console.WriteLine($"Numero de Factura       123456                                     Monto a Pagar          {montoPagar[i]}");
                         Console.WriteLine($"Comision autorizada    {montoComision[i]}                          Paga con                 {montoPagaCliente[i]}");
                         Console.WriteLine($"Monto deducible       {montoDeducido[i]}                           Vuelto                   {montoPagaCliente[i] - montoPagar[i]}");
                         encontrado = true;
@@ -289,10 +284,110 @@ namespace Proyecto1
                     }
                 }
             }
+
+            void modificarPagos(int[] cedula, int[] numeroPago, int[] tipoServicio, String[] nombre, String[] apellido1, String[] apellido2, double[] montoPagar, double[] montoComision, double[] montoPagaCliente, double[] montoDeducido, double[] vuelto)
+            {
+                bool encontrado = false;
+                Console.WriteLine("Numero de pago: ");
+                int numbPago = int.Parse(Console.ReadLine());
+                Console.WriteLine("\n");
+                char opcionModificar;
+                // String[] guardarElementosString = new String[3];
+                // int[] guardaElementosInt = new int[4];
+                // double[] guardaElementosDouble = new double[4];
+
+
+
+                for (int i = 0; i < numeroPago.Length; i++)
+                {
+                    Console.WriteLine($"Numero de pago: {numeroPago[i]}");
+                    if (numbPago.Equals(numeroPago[i]))
+                    {
+
+                        Console.WriteLine(" ");
+                        Console.WriteLine("                  Sistema de Pago de Servicios Publicos");
+                        Console.WriteLine("                  Tienda la Favorita  -  Modificar Pagos");
+                        Console.WriteLine("      ");
+                        Console.WriteLine($"Numero de pago: {numeroPago[i]}");
+                        Console.WriteLine("                                                                                                                                ");
+                        Console.WriteLine($"C-Cedula:             {cedula[i]}                                          D-Nombre:         {nombre[i]}");
+                        Console.WriteLine($"E-Apellido:           {apellido1[i]}                                           F-Apellido 2:     {apellido2[i]}");
+                        Console.WriteLine(" ");
+                        Console.WriteLine($"G-Tipo de Servicio    {tipoServicio[i]}                        [1-Electricidad  2-Telefono   3-Agua]");
+                        Console.WriteLine(" ");
+                        Console.WriteLine($"H-Numero de Factura       12345                                  Monto a Pagar          {montoPagar[i]}");
+                        Console.WriteLine($"Comision autorizada    {montoComision[i]}                          I-Paga con                 {montoPagaCliente[i]}");
+                        Console.WriteLine($"Monto deducible       {montoDeducido[i]}                           Vuelto                   {montoPagaCliente[i] - montoPagar[i]}");
+
+                        // guardarElementosString[0] = nombre[i];
+                        // guardarElementosString[1] = apellido1[i];
+                        // guardarElementosString[2] = apellido2[i];
+                        // guardarElementosString[4] = numeroFactura[i];
+
+                        // guardaElementosInt[0] = numeroPago[i];
+                        // guardaElementosInt[1] = cedula[i];
+                        // guardaElementosInt[2] = tipoServicio[i];
+                        // guardaElementosInt[3] = numeroPago[i];
+
+                        // guardaElementosDouble[0] = montoPagaCliente[i];
+
+
+
+                        // for (int j = 0; j < guardaElementos.Length; j++)
+                        // {
+                        //     guardaElementos[i] ==
+                        // }
+                        Console.Write("Seleccione opcion a modificar: ");
+                        char.TryParse(Console.ReadLine(), out opcionModificar);
+                        Console.Write("Nuevo Dato: ");
+                        encontrado = true;
+
+
+                        switch (opcionModificar)
+                        {
+                            case 'C':
+                                Console.WriteLine("Ingrese la cedula: ");
+                                cedula[i] = int.Parse(Console.ReadLine());
+                                break;
+                            default:
+                                break;
+                        }
+
+                        Console.WriteLine(" ");
+                        Console.WriteLine("                  Sistema de Pago de Servicios Publicos");
+                        Console.WriteLine("                  Tienda la Favorita  -  Modificar Pagos");
+                        Console.WriteLine("      ");
+                        Console.WriteLine($"Numero de pago: {numeroPago[i]}");
+                        Console.WriteLine("                                                                                                                                ");
+                        Console.WriteLine($"C-Cedula:             {cedula[i]}                                          D-Nombre:         {nombre[i]}");
+                        Console.WriteLine($"E-Apellido:           {apellido1[i]}                                           F-Apellido 2:     {apellido2[i]}");
+                        Console.WriteLine(" ");
+                        Console.WriteLine($"G-Tipo de Servicio    {tipoServicio[i]}                        [1-Electricidad  2-Telefono   3-Agua]");
+                        Console.WriteLine(" ");
+                        Console.WriteLine($"H-Numero de Factura       12345                                  Monto a Pagar          {montoPagar[i]}");
+                        Console.WriteLine($"Comision autorizada    {montoComision[i]}                          I-Paga con                 {montoPagaCliente[i]}");
+                        Console.WriteLine($"Monto deducible       {montoDeducido[i]}                           Vuelto                   {montoPagaCliente[i] - montoPagar[i]}");
+                    }
+
+                    if (encontrado == false)
+                    {
+                        Console.WriteLine(" ");
+                        Console.WriteLine("                  Sistema de Pago de Servicios Publicos");
+                        Console.WriteLine("                  Tienda la Favorita  -  Modificar Pagos");
+                        Console.WriteLine("      ");
+                        Console.WriteLine($"Numero de pago: {numbPago}");
+                        Console.WriteLine("                 Pago no se encuentra Registrado");
+
+                        Console.WriteLine("                 Presione cualquier Tecla para ver Registro");
+                        Console.ReadKey();
+                        Console.WriteLine("\n");
+
+                    }
+                }
+            }
         }
     }
 }
-
 
 
 
